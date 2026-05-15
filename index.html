@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pinkjujapipi - Welcome to my shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Mitr:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* ปรับโทนสีหลักเป็น ฟ้าม่วง ตามที่ชอบ */
+            --color-pink: #A5B4FC;          /* ปรับเป็นฟ้าม่วงอ่อน */
+            --color-pink-light: #EEF2FF;    /* ปรับเป็นฟ้าม่วงสว่าง */
+            --color-green: #C084FC;         /* ปรับเป็นม่วงพาสเทล */
+            --color-green-dark: #312E81;    /* ปรับเป็นน้ำเงินม่วงเข้ม */
+            --color-yellow: #FAF5FF;        /* ปรับพื้นหลังเป็นขาวม่วงนวล */
+            --color-blue: #E0E7FF;          /* ฟ้าอมม่วง */
+        }
+
+        body {
+            font-family: 'Mitr', sans-serif;
+            background-color: var(--color-yellow);
+            background-image: 
+                linear-gradient(rgba(165, 180, 252, 0.2) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(165, 180, 252, 0.2) 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: var(--color-green-dark);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .font-eng {
+            font-family: 'Fredoka One', cursive;
+            font-weight: 400;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 3px dashed var(--color-pink);
+            border-radius: 2rem;
+            box-shadow: 0 10px 25px rgba(165, 180, 252, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .card-solid {
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 3px solid var(--color-green);
+            border-radius: 2rem;
+            box-shadow: 4px 4px 0px var(--color-green);
+        }
+
+        .btn-cute {
+            background-color: var(--color-green);
+            color: white;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn-cute:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(192, 132, 252, 0.5);
+            border-color: var(--color-green-dark);
+        }
+
+        .btn-contact {
+            background-color: var(--color-pink-light);
+            color: var(--color-green-dark);
+            border: 2px solid var(--color-pink);
+            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-contact:hover {
+            background-color: var(--color-pink);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-yellow); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-pink); 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-green); 
+        }
+
+        /* Modal Transitions */
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        /* Decoration SVGs Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes star-twinkle {
+            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 0.6; }
+            50% { transform: translateY(-10px) scale(1.15) rotate(10deg); opacity: 1; filter: drop-shadow(0 0 6px currentColor); }
+        }
+        .animate-star {
+            animation: star-twinkle 3.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-12">
+
+    <!-- Background Decor (SVGs instead of emojis) -->
+    <!-- Stars scattered across the screen -->
+    <div class="fixed top-[5%] left-[5%] text-[#A5B4FC] animate-star z-[-1] pointer-events-none" style="animation-delay: 0s;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
+    </div>
+    <div class="fixed top-[15%] right-[10%] text-[#C084FC] animate-star z-[-1] pointer-events-none" style="animation-delay: 0.5s;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
+    </div>
+    <div class="fixed top-[35%] left-[8%] text-[#AEEEEE] animate-star z-[-1] pointer-events-none" style="animation-delay: 1.2s;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    <div class="fixed top-[50%] right-[5%] text-[#A5B4FC] animate-star z-[-1] pointer-events-none" style="animation-delay: 0.8s;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
+    </div>
+    <div class="fixed bottom-[25%] left-[12%] text-[#C084FC] animate-star z-[-1] pointer-events-none" style="animation-delay: 1.5s;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    <div class="fixed bottom-[10%] right-[15%] text-[#A5B4FC] animate-star z-[-1] pointer-events-none" style="animation-delay: 0.2s;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
+    </div>
+
+    <!-- Original Floats -->
+    <div class="fixed top-10 left-4 md:left-[20%] text-indigo-300 animate-float opacity-70 z-[-1] pointer-events-none">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
+    </div>
+    <div class="fixed bottom-20 right-4 md:right-[20%] text-[#C084FC] animate-float opacity-70 z-[-1] pointer-events-none" style="animation-delay: 1s;">
+        <svg width="45" height="45" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C12 7.5 16.5 12 22.5 12C16.5 12 12 16.5 12 22.5C12 16.5 7.5 12 1.5 12C7.5 12 12 7.5 12 1.5Z"/></svg>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-[480px] mx-auto px-4 pt-12 relative">
+        
+        <!-- Profile Section (โครงสร้าง Header ทั้งหมดคงไว้ 100%) -->
+        <div class="text-center mb-10 relative">
+            <div class="w-32 h-32 mx-auto bg-white rounded-full border-4 border-[#C084FC] shadow-[0_0_15px_rgba(192,132,252,0.6)] relative overflow-hidden flex items-center justify-center mb-4">
+                <img src="att.Si6j3tye9T8DEzdZJTZN28sQekv3GttCWQq558BpxCI.jpeg" alt="Profile" class="w-full h-full object-cover">
+            </div>
+            <!-- อัปเดตชื่อร้านค้า -->
+            <h1 class="text-4xl font-eng text-[#312E81] tracking-wide mb-2 drop-shadow-md">pinkjujapipi</h1>
+            <p class="font-eng text-xl text-[#A5B4FC] font-bold">Welcome to my shop</p>
+        </div>
+
+        <!-- Badges Section (ส่วนปุ่มกลมเล็กๆ ด้านบน - คงไว้ 100%) -->
+        <div class="flex justify-center gap-2 mb-6 flex-wrap">
+            <span class="px-3 py-1 bg-white text-xs font-semibold rounded-full border border-purple-200 shadow-sm flex items-center gap-1">✨ Open</span>
+            <span class="px-3 py-1 bg-white text-xs font-semibold rounded-full border border-purple-200 shadow-sm flex items-center gap-1">🎨 Design</span>
+            <span class="px-3 py-1 bg-white text-xs font-semibold rounded-full border border-purple-200 shadow-sm flex items-center gap-1">💻 Website</span>
+        </div>
+
+        <!-- Status Bar (แถบเช็คคิวงาน - คงไว้ 100%) -->
+        <div class="bg-white rounded-2xl p-4 mb-6 border border-purple-100 shadow-sm text-center text-xs">
+            <p class="font-medium text-gray-500 mb-1">ระยะเวลารอรับงานปัจจุบัน</p>
+            <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden mb-1">
+                <div class="bg-purple-400 h-full w-[40%]"></div>
+            </div>
+            <p class="text-[10px] text-purple-500 font-medium">คิวงานปกติ: รองาน 4-8 ชั่วโมง (แล้วแต่คิวของวันนั้นๆ)</p>
+        </div>
+
+        <!-- Intro Card -->
+        <div class="card p-6 mb-8 relative">
+            <div class="absolute -top-4 -right-2 text-[#AEEEEE] transform rotate-12">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C17.5 2 22 6.5 22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2ZM12 4C7.6 4 4 7.6 4 12C4 16.4 7.6 20 12 20C16.4 20 20 16.4 20 12C20 7.6 16.4 4 12 4Z"/><circle cx="12" cy="12" r="5"/></svg>
+            </div>
+            <!-- อัปเดตคำโปรยร้าน -->
+            <p class="text-center text-sm md:text-base leading-relaxed mb-4">
+                ร้านจูรับทำเว็บครบวงจรนะแม่น้า⭐️
+            </p>
+            
+            <!-- อัปเดตงานที่รับทำ -->
+            <div class="bg-[#EFF6FF] rounded-2xl p-4 text-sm mt-4">
+                <p class="font-bold text-center mb-2 font-eng tracking-wider text-indigo-600">🎨 งานที่รับทำ</p>
+                <ul class="space-y-2 pl-2">
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#C084FC]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> เว็บแอพพรีเมียม</li>
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#C084FC]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> เว็บรับเติมเกมส์</li>
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-[#C084FC]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> เว็บรับทำป้าย</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ปุ่มเช็คคิวงานแบบเส้นประ (คงไว้ 100% พร้อมเปลี่ยนสี) -->
+        <div class="mb-8 text-center">
+            <button onclick="toggleModal('queue-modal')" class="w-full py-4 border-2 border-dashed border-[#C084FC] rounded-2xl bg-white hover:bg-purple-50 transition-colors text-sm font-semibold tracking-wider text-purple-600 flex items-center justify-center gap-2">
+                <span>🗓️</span> ตรวจสอบคิวงานปัจจุบัน & เงื่อนไขของร้าน
+            </button>
+        </div>
+
+        <!-- ส่วนของตัวอย่างงาน (ลิงก์ทั้งหมดแบ่งย่อยจัดใน Layout การ์ด) -->
+        <div class="space-y-4 mb-8">
+            <div class="text-center font-bold text-lg mb-2 text-[#312E81]">⭐️ ตัวอย่างงาน คลิ๊ก ⭐️</div>
+            
+            <div class="grid grid-cols-1 gap-3">
+                <a href="https://julie-vwb.github.io/pinkjulie-land/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 pinkjulie-land Studio
+                </a>
+                <a href="https://julie-vwb.github.io/mahatep-shop/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 mahatep-shop
+                </a>
+                <a href="https://julie-vwb.github.io/cxllmestore-shop/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 cxllmestore-shop
+                </a>
+                <a href="https://julie-vwb.github.io/cooper-shop/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 cooper-shop
+                </a>
+                <a href="https://julie-vwb.github.io/babybear-design/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 babybear-design
+                </a>
+                <a href="https://julie-vwb.github.io/tanewcutie-design/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 tanewcutie-design
+                </a>
+                <a href="https://julie-vwb.github.io/meow-font/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 meow-font
+                </a>
+                <a href="https://julie-vwb.github.io/waray-design/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 waray-design
+                </a>
+                <a href="https://julie-vwb.github.io/luna-webstudio/" target="_blank" class="card-solid p-4 text-center block hover:-translate-y-1 transition-transform font-medium text-sm text-indigo-900">
+                    🔗 luna-webstudio
+                </a>
+            </div>
+        </div>
+
+        <!-- ขั้นตอนการสั่งซื้อ -->
+        <div class="card p-6 mb-8">
+            <h3 class="font-bold text-center mb-4 text-purple-600 flex items-center justify-center gap-2">📋 ขั้นตอนการสั่ง</h3>
+            <div class="space-y-3 text-sm">
+                <div class="flex gap-3">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-200 text-purple-700 flex items-center justify-center font-bold text-xs">1</span>
+                    <p>กรอกฟอร์ม เขียนรายละเอียดร้านค้า</p>
+                </div>
+                <div class="flex gap-3">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-200 text-purple-700 flex items-center justify-center font-bold text-xs">2</span>
+                    <p>ใส่ลิงก์ ตัวอย่างงานมาให้พร้อม หากมีโลโก้ให้แนบมา</p>
+                </div>
+                <div class="flex gap-3">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-200 text-purple-700 flex items-center justify-center font-bold text-xs">3</span>
+                    <p>ส่งงานให้เช็ค แจ้งยอด ชำระเงิน</p>
+                </div>
+                <div class="flex gap-3">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-200 text-purple-700 flex items-center justify-center font-bold text-xs">4</span>
+                    <p>รอรับลิงก์ได้เลยค่า</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- กฎของร้านค้า -->
+        <div class="bg-red-50 border-2 border-dashed border-red-200 rounded-3xl p-6 mb-8 text-sm">
+            <h3 class="font-bold text-center text-red-600 mb-3 flex items-center justify-center gap-2">📍 กฎของร้าน 📍</h3>
+            <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start gap-2">• ถ้าโอนเงินแล้วทางร้านไม่คืนเงินทุกกรณีนะคะ</li>
+                <li class="flex items-start gap-2">• หากยกเลิกงานหลังส่งบรีฟมาแล้ว หากงานเริ่มไปแล้วจะคืนแค่ 50% ค่ะ</li>
+                <li class="flex items-start gap-2">• หากยกเลิกหลังจากเช็คงาน = ไม่คืน และส่งงานให้ตามปกติ</li>
+            </ul>
+        </div>
+
+        <!-- ช่องทางติดต่อ -->
+        <div class="card p-6 mb-8">
+            <h3 class="font-bold text-center mb-4 text-[#312E81] font-eng tracking-wide">📱 Contact Me</h3>
+            <div class="grid grid-cols-1 gap-3">
+                <a href="https://www.facebook.com/profile.php?id=61554192600355" target="_blank" class="btn-contact">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.8z"/></svg>
+                    Facebook Profile
+                </a>
+                <a href="https://line.me/ti/p/LfBtdhlrVa" target="_blank" class="btn-contact">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738s-12 4.369-12 9.738c0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.025c-.052.31-.253 1.211 1.091.66 1.344-.552 7.251-4.271 9.892-7.309 1.986-2.284 3.056-4.664 3.056-6.961z"/></svg>
+                    Line Contact
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Queue Modal (Pop-up สำหรับแสดงข้อมูลเพิ่มเติมของปุ่มเช็คคิว) -->
+    <div id="queue-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+        <div class="modal-content bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl relative border-3 border-[#C084FC]">
+            <button onclick="toggleModal('queue-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+            <h3 class="text-xl font-bold text-[#312E81] mb-4 flex items-center gap-2">📋 รายละเอียดคิวงาน & เงื่อนไข</h3>
+            <div class="space-y-3 text-sm text-gray-700">
+                <p class="font-semibold text-purple-600">⏱️ เงื่อนไขเวลาดำเนินงาน:</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>ตามปกติรองาน 4-8 ชั่วโมง แล้วแต่คิวของวันนั้นๆ</li>
+                    <li class="text-red-500 font-bold">งานเร่ง คิดราคา *2 ของราคางานปกติ</li>
+                </ul>
+                <div class="pt-3 border-t border-purple-100 mt-4">
+                    <p class="text-xs text-center text-gray-400 font-eng">pinkjujapipi webstudio</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Animation และควบคุมการปิดเปิด Modal คงไว้ครบถ้วน -->
+    <script>
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.toggle('active');
+                if (modal.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+        }
+
+        // ปิด Modal เมื่อคลิกพื้นที่ด้านนอก
+        window.onclick = function(event) {
+            const queueModal = document.getElementById('queue-modal');
+            if (event.target === queueModal) {
+                toggleModal('queue-modal');
+            }
+        }
+    </script>
+</body>
+</html>
